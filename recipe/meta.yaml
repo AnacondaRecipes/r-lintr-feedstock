@@ -14,14 +14,21 @@ source:
     - https://cran.r-project.org/src/contrib/Archive/lintr/lintr_{{ version }}.tar.gz
   sha256: ec732d35c7ab4e9ef914cd3067b5031a724dc9e4f0eb73219c3b1c572340dc23
 
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  # igraph is not available for windows
-  skip: true  # [win]
+
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: rmarkdown
 requirements:
   build:
     - r-base
@@ -53,17 +60,53 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('lintr')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('lintr')"           # [not win]
     - "\"%R%\" -e \"library('lintr')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://github.com/jimhester/lintr
-  license: MIT
+  license: MIT + file LICENSE
   summary: Checks adherence to a given style, syntax errors and possible semantic issues.  Supports
-    on the fly checking of R code edited with Emacs, Vim and Sublime Text.
+    on the fly checking of R code edited with 'RStudio IDE', 'Emacs', 'Vim', 'Sublime
+    Text' and 'Atom'.
   license_family: MIT
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: lintr
+# Title: A 'Linter' for R Code
+# Version: 1.0.1
+# Authors@R: person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre"))
+# URL: https://github.com/jimhester/lintr
+# BugReports: https://github.com/jimhester/lintr/issues
+# Description: Checks adherence to a given style, syntax errors and possible semantic issues.  Supports on the fly checking of R code edited with 'RStudio IDE', 'Emacs', 'Vim', 'Sublime Text' and 'Atom'.
+# Depends: R (>= 3.1.1)
+# Imports: rex, crayon, codetools, stringdist, testthat, digest, igraph, rstudioapi (>= 0.2), httr, jsonlite, knitr, stats, utils
+# Suggests: rmarkdown
+# License: MIT + file LICENSE
+# LazyData: true
+# VignetteBuilder: knitr
+# RoxygenNote: 6.0.1
+# NeedsCompilation: no
+# Packaged: 2017-08-10 17:38:23 UTC; jhester
+# Author: Jim Hester [aut, cre]
+# Maintainer: Jim Hester <james.f.hester@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2017-08-10 18:26:05 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
