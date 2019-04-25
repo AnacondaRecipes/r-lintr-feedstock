@@ -1,4 +1,4 @@
-{% set version = '1.0.2' %}
+{% set version = '1.0.3' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,12 +11,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lintr_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lintr/lintr_{{ version }}.tar.gz
-  sha256: f61eb02fe102f30aedf60b8f526659623eeb87c1c520de49e45ab05645748692
+  sha256: bd226d2248716d8a7748703e15e490d2a738fd714a7586f9d8ad8937027e9a6e
 
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -86,7 +87,7 @@ extra:
 
 # Package: lintr
 # Title: A 'Linter' for R Code
-# Version: 1.0.2
+# Version: 1.0.3
 # Authors@R: person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre"))
 # URL: https://github.com/jimhester/lintr
 # BugReports: https://github.com/jimhester/lintr/issues
@@ -99,11 +100,11 @@ extra:
 # VignetteBuilder: knitr
 # RoxygenNote: 6.0.1
 # NeedsCompilation: no
-# Packaged: 2017-11-08 15:30:13 UTC; jhester
+# Packaged: 2018-11-08 16:39:01 UTC; jhester
 # Author: Jim Hester [aut, cre]
 # Maintainer: Jim Hester <james.f.hester@gmail.com>
 # Repository: CRAN
-# Date/Publication: 2017-11-08 15:35:50 UTC
+# Date/Publication: 2018-11-08 17:10:10 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
